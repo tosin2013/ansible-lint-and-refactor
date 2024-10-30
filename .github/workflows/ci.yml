@@ -31,6 +31,7 @@ jobs:
 
       - name: Verify Ansible is accessible
         run: |
+          docker ps
           docker exec test-container ansible --version
 
       - name: Stop and remove container
