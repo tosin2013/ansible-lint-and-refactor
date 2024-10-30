@@ -1,10 +1,10 @@
-# Ubuntu 20.04 LTS Ansible Test Image
+# Ubuntu 24.10 LTS Ansible Test Image
 
-Ubuntu 20.04 LTS (Focal Fossa) Docker container for Ansible playbook and role testing.  
+Ubuntu 24.10 LTS (Focal Fossa) Docker container for Ansible playbook and role testing.  
 This container is used to test Ansible roles and playbooks (e.g. with molecule) running locally inside the container.  
 A non-priviledged user `ansible` is created with password-less sudo configured.
 
-[![Docker Build and Publish](https://github.com/TimGrt/docker-ubuntu2004-ansible/actions/workflows/ci.yml/badge.svg)](https://github.com/TimGrt/docker-ubuntu2004-ansible/actions/workflows/ci.yml) ![Docker Pulls](https://img.shields.io/docker/pulls/timgrt/ubuntu2004-ansible) ![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/timgrt/docker-ubuntu2004-ansible/main)
+[![Docker Build and Publish](https://github.com/TimGrt/docker-ubuntu2410-ansible/actions/workflows/ci.yml/badge.svg)](https://github.com/TimGrt/docker-ubuntu2410-ansible/actions/workflows/ci.yml) ![Docker Pulls](https://img.shields.io/docker/pulls/timgrt/ubuntu2410-ansible) ![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/timgrt/docker-ubuntu2410-ansible/main)
 
 ## Tags
 
@@ -18,18 +18,18 @@ This image is built on Docker Hub automatically any time the upstream OS contain
 
   1. [Install Docker](https://docs.docker.com/engine/installation/).
   2. Clone this repository and `cd` into this directory.
-  3. Run `docker build -t ubuntu2004-ansible .`
+  3. Run `docker build -t ubuntu2410-ansible .`
 
 ## How to Use Standalone
 
   1. [Install Docker](https://docs.docker.com/engine/installation/).
   2. Pull this image from Docker Hub or use the image you built earlier.
   ```bash
-  docker pull timgrt/ubuntu2004-ansible:latest
+  docker pull quay.io/takinosh/ubuntu2410-ansible
   ```
   3. Run a container from the image. To test my Ansible roles, I add in a volume mounted from the current working directory with ``--volume=`pwd`:/etc/ansible/roles/role_under_test:ro``.
   ```bash
-  docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro timgrt/ubuntu2004-ansible:latest
+  docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro quay.io/takinosh/ubuntu2410-ansible
   ``` 
   4. Use Ansible inside the container:
   ```bash
@@ -51,8 +51,8 @@ For example:
 driver:
   name: docker
 platforms:
-  - name: ubuntu2004
-    image: timgrt/ubuntu2004-ansible:latest
+  - name: ubuntu2410
+    image: quay.io/takinosh/ubuntu2410-ansible
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
@@ -69,7 +69,7 @@ provisioner:
       pipelining: false
   inventory:
     host_vars:
-      ubuntu2004:
+      ubuntu2410:
         ansible_user: ansible
 ```
 
