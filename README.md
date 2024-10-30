@@ -4,7 +4,7 @@ Ubuntu 24.10 LTS (Focal Fossa) Docker container for Ansible playbook and role te
 This container is used to test Ansible roles and playbooks (e.g. with molecule) running locally inside the container.  
 A non-priviledged user `ansible` is created with password-less sudo configured.
 
-[![Docker Build and Publish](https://github.com/TimGrt/docker-ubuntu2410-ansible/actions/workflows/ci.yml/badge.svg)](https://github.com/TimGrt/docker-ubuntu2410-ansible/actions/workflows/ci.yml) ![Docker Pulls](https://img.shields.io/docker/pulls/timgrt/ubuntu2410-ansible) ![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/timgrt/docker-ubuntu2410-ansible/main)
+[![Docker Build and Publish](https://github.com/tosin2013/docker-ubuntu2410-ansible/actions/workflows/ci.yml/badge.svg)](https://github.com/tosin2013/docker-ubuntu2410-ansible/actions/workflows/ci.yml) ![Docker Pulls](https://img.shields.io/docker/pulls/tosin2013/ubuntu2410-ansible) ![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/tosin2013/docker-ubuntu2410-ansible/main)
 
 ## Tags
 
