@@ -1,5 +1,5 @@
 FROM ubuntu:20.04
-LABEL maintainer="Tim Gruetzmacher"
+LABEL maintainer="Tosin Akinosho"
 
 ENV DEBIAN_FRONTEND noninteractive
 
