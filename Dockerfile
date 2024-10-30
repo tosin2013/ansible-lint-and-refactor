@@ -27,7 +27,7 @@ RUN locale-gen en_US.UTF-8
 
 # Create virtual environment and install Ansible
 RUN python3 -m venv /opt/ansible-venv \
-    && /opt/ansible-venv/bin/pip install --no-cache-dir ansible
+    && /opt/ansible-venv/bin/pip install --no-cache-dir ansible ansible-lint ansible-navigator molecule
 
 # Add virtual environment to PATH
 ENV PATH="/opt/ansible-venv/bin:$PATH"
