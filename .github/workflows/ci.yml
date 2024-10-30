@@ -25,10 +25,16 @@ jobs:
       - name: list docker images
         run: docker images
 
-      - name: Verify Ansible is accessible in the built image.
+      - name: Run the container
         run: |
-          docker run --name test-container -d --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:rw docker-ansible
-          docker exec --tty test-container env TERM=xterm ansible --version
+          docker run --name test-container -d docker-ansible
+
+      - name: Verify Ansible is accessible
+        run: |
+          docker exec test-container ansible --version
+
+      - name: Stop and remove container
+        run: docker rm -f test-container
 
   publish:
     name: Publish
