@@ -27,11 +27,10 @@ jobs:
 
       - name: Run the container
         run: |
-          docker run --name test-container -d docker-ansible
+          docker run --name test-container -d docker-ansible sleep infinity
 
       - name: Verify Ansible is accessible
         run: |
-          docker ps
           docker exec test-container ansible --version
 
       - name: Stop and remove container
