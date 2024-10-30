@@ -50,4 +50,4 @@ jobs:
           file: Dockerfile
           platforms: linux/amd64
           push: true
-          tags: quay.io/takinosh/ubuntu2410-ansible:latest
+          tags: quay.io/takinosh/ubuntu2410-ansible:${{ github.sha }}
