@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-apt \
     python3-yaml \
     software-properties-common \
-    rsyslog systemd systemd-cron sudo iproute2 \
+    sudo iproute2 \
     python3-venv \
     && rm -Rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man \
     && apt-get clean
@@ -41,5 +41,4 @@ RUN set -xe \
     && useradd -m ${ANSIBLE_USER} \
     && echo "${ANSIBLE_USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/ansible
 
-VOLUME ["/sys/fs/cgroup"]
-CMD ["/lib/systemd/systemd"]
+CMD ["/bin/bash"]
