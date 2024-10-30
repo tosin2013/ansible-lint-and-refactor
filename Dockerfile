@@ -1,8 +1,3 @@
-FROM ubuntu:23.10
-LABEL maintainer="Tosin Akinosho"
-
-ENV DEBIAN_FRONTEND=noninteractive
-
 # Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
        apt-utils \
@@ -18,25 +13,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
        python3-yaml \
        software-properties-common \
        rsyslog systemd systemd-cron sudo iproute2 \
+       python3-venv \
     && rm -Rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man \
     && apt-get clean
-
-# Disable rsyslog kernel logging to avoid errors
-RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
-
-# Remove unnecessary getty and udev targets to reduce CPU usage
-RUN rm -f /lib/systemd/system/systemd*udev* /lib/systemd/system/getty.target
 
 # Fix potential UTF-8 errors
 RUN locale-gen en_US.UTF-8
 
-# Install Ansible via Pip
-ENV pip_packages "ansible"
-RUN pip3 install --no-cache-dir $pip_packages
+# Create virtual environment and install Ansible
+RUN python3 -m venv /opt/ansible-venv \
+    && /opt/ansible-venv/bin/pip install --no-cache-dir ansible
 
-# Copy initctl_faker
-COPY initctl_faker /initctl_faker
-RUN chmod +x /initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
+# Add virtual environment to PATH
+ENV PATH="/opt/ansible-venv/bin:$PATH"
 
 # Install Ansible inventory file
 RUN mkdir -p /etc/ansible && printf "[local]\nlocalhost ansible_connection=local\n" > /etc/ansible/hosts
