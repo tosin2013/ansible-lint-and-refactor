@@ -1,19 +1,24 @@
+FROM ubuntu:23.10
+LABEL maintainer="Tosin Akinosho"
+
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
-       apt-utils \
-       build-essential \
-       locales \
-       libffi-dev \
-       libssl-dev \
-       libyaml-dev \
-       python3-dev \
-       python3-setuptools \
-       python3-pip \
-       python3-apt \
-       python3-yaml \
-       software-properties-common \
-       rsyslog systemd systemd-cron sudo iproute2 \
-       python3-venv \
+    apt-utils \
+    build-essential \
+    locales \
+    libffi-dev \
+    libssl-dev \
+    libyaml-dev \
+    python3-dev \
+    python3-setuptools \
+    python3-pip \
+    python3-apt \
+    python3-yaml \
+    software-properties-common \
+    rsyslog systemd systemd-cron sudo iproute2 \
+    python3-venv \
     && rm -Rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man \
     && apt-get clean
 
@@ -33,8 +38,8 @@ RUN mkdir -p /etc/ansible && printf "[local]\nlocalhost ansible_connection=local
 # Create `ansible` user with sudo permissions
 ENV ANSIBLE_USER=ansible
 RUN set -xe \
-  && useradd -m ${ANSIBLE_USER} \
-  && echo "${ANSIBLE_USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/ansible
+    && useradd -m ${ANSIBLE_USER} \
+    && echo "${ANSIBLE_USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/ansible
 
 VOLUME ["/sys/fs/cgroup"]
 CMD ["/lib/systemd/systemd"]
