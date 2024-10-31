@@ -27,9 +27,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -Rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man \
     && apt-get clean
 
-# Set python3 and pip3 to point to Python 3.12
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1 \
-    && update-alternatives --install /usr/bin/pip3 pip3 /usr/bin/pip3 1
+# Set python3 to point to Python 3.12
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1
+
+# Ensure pip is up to date
+RUN python3 -m ensurepip --upgrade
 
 # Fix potential UTF-8 errors
 RUN locale-gen en_US.UTF-8
