@@ -30,16 +30,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Set python3 to point to Python 3.12
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1
 
-# Install pip for Python 3.12 and upgrade it
-RUN apt-get update && apt-get install -y python3-pip \
-    && pip3 install --upgrade pip \
-    && rm -rf /var/lib/apt/lists/*
-
 # Fix potential UTF-8 errors
 RUN locale-gen en_US.UTF-8
 
-# Create virtual environment and install Ansible
+# Create virtual environment, upgrade pip, and install Ansible
 RUN python3 -m venv /opt/ansible-venv \
+    && /opt/ansible-venv/bin/pip install --upgrade pip \
     && /opt/ansible-venv/bin/pip install --no-cache-dir ansible ansible-navigator ansible-dev-tools
 
 # Add virtual environment to PATH
