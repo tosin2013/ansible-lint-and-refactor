@@ -11,9 +11,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libffi-dev \
     libssl-dev \
     libyaml-dev \
-    python3.12 \
-    python3.12-dev \
-    python3.12-venv \
+    python3.11 \
+    python3.11-dev \
+    python3.11-venv \
     python3-setuptools \
     python3-pip \
     python3-apt \
