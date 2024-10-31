@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-setuptools \
     python3-pip \
     python3-apt \
+    python3-full \
     python3-yaml \
     software-properties-common \
     sudo iproute2 \
