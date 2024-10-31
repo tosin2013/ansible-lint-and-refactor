@@ -1,6 +1,8 @@
 # Use Ubuntu 23.10 as base
 FROM ubuntu:23.10
 LABEL maintainer="Tosin Akinosho"
+LABEL version="1.0"
+LABEL description="Ansible environment with Python 3.12"
 
 # Set non-interactive frontend
 ENV DEBIAN_FRONTEND=noninteractive
@@ -26,8 +28,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean
 
 # Set python3 and pip3 to point to Python 3.12
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12  \
-    && update-alternatives --install /usr/bin/pip3 pip3 /usr/bin/pip3
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1 \
+    && update-alternatives --install /usr/bin/pip3 pip3 /usr/bin/pip3 1
 
 # Fix potential UTF-8 errors
 RUN locale-gen en_US.UTF-8
@@ -47,5 +49,11 @@ ENV ANSIBLE_USER=ansible
 RUN set -xe \
     && useradd -m ${ANSIBLE_USER} \
     && echo "${ANSIBLE_USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/ansible
+
+# Set working directory
+WORKDIR /ansible
+
+# Add a health check
+HEALTHCHECK CMD ansible --version || exit 1
 
 CMD ["/bin/bash"]
