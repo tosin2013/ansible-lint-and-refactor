@@ -1,9 +1,11 @@
+# Use Ubuntu 23.10 as base
 FROM ubuntu:23.10
 LABEL maintainer="Tosin Akinosho"
 
+# Set non-interactive frontend
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install dependencies
+# Install dependencies and Python 3.12
 RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-utils \
     build-essential \
@@ -11,24 +13,31 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libffi-dev \
     libssl-dev \
     libyaml-dev \
-    python3.11 \
-    python3.11-dev \
-    python3.11-venv \
+    python3.12 \
+    python3.12-dev \
+    python3.12-venv \
     python3-setuptools \
     python3-pip \
     python3-apt \
-    python3-full \
     python3-yaml \
     software-properties-common \
     sudo iproute2 \
     && rm -Rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man \
     && apt-get clean
 
+# Set python3 and pip3 to point to Python 3.12
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1 \
+    && update-alternatives --install /usr/bin/pip3 pip3 /usr/bin/pip3 1
+
 # Fix potential UTF-8 errors
 RUN locale-gen en_US.UTF-8
 
-# Install Ansible directly
-RUN pip3 install --no-cache-dir ansible ansible-navigator ansible-dev-tools
+# Create virtual environment and install Ansible
+RUN python3 -m venv /opt/ansible-venv \
+    && /opt/ansible-venv/bin/pip install --no-cache-dir ansible ansible-navigator ansible-dev-tools
+
+# Add virtual environment to PATH
+ENV PATH="/opt/ansible-venv/bin:$PATH"
 
 # Install Ansible inventory file
 RUN mkdir -p /etc/ansible && printf "[local]\nlocalhost ansible_connection=local\n" > /etc/ansible/hosts
