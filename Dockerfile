@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-apt \
     python3-yaml \
     git \
+    curl \
     software-properties-common \
     sudo iproute2 \
     && rm -Rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man \
