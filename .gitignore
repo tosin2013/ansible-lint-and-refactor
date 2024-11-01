@@ -1,0 +1,6 @@
+aider-env/
+aider-env/bin/activate
+aider_setup.sh
+quickscript.sh
+.aider*
+.env
