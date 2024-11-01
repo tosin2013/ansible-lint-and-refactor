@@ -57,4 +57,7 @@ WORKDIR /ansible
 # Add a health check
 HEALTHCHECK CMD ansible --version || exit 1
 
+# Switch to the `ansible` user
+USER ${ANSIBLE_USER}
+
 CMD ["/bin/bash"]
