@@ -49,7 +49,8 @@ RUN mkdir -p /etc/ansible && printf "[local]\nlocalhost ansible_connection=local
 ENV ANSIBLE_USER=ansible
 RUN set -xe \
     && useradd -m ${ANSIBLE_USER} \
-    && echo "${ANSIBLE_USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/ansible
+    && echo "${ANSIBLE_USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/ansible \
+    && chown -R ${ANSIBLE_USER}:${ANSIBLE_USER} /opt/ansible-venv /etc/ansible
 
 # Set working directory
 WORKDIR /ansible
