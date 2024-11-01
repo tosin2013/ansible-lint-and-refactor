@@ -15,6 +15,18 @@ run:
 test:
 	docker run --rm $(IMAGE_NAME) ansible --version
 
+# Run ansible-lint
+lint:
+	docker run --rm $(IMAGE_NAME) ansible-lint
+
+# Run ansible-navigator
+navigator:
+	docker run --rm -v $(PWD):/ansible $(IMAGE_NAME) ansible-navigator
+
+# Run molecule tests
+molecule-test:
+	docker run --rm -v $(PWD):/ansible $(IMAGE_NAME) molecule test
+
 # Push the Docker image to a registry (assuming you have logged in)
 push:
 	docker push $(IMAGE_NAME)
@@ -23,4 +35,4 @@ push:
 clean:
 	docker rmi $(IMAGE_NAME)
 
-.PHONY: build run test push clean
+.PHONY: build run test lint navigator molecule-test push clean
