@@ -18,7 +18,7 @@ This image is built on Docker Hub automatically any time the upstream OS contain
 
   1. [Install Docker](https://docs.docker.com/engine/installation/).
   2. Clone this repository and `cd` into this directory.
-  3. Run `docker build -t ubuntu2410-ansible .`
+  3. Run `make build` to build the Docker image.
 
 ## How to Use Standalone
 
@@ -72,6 +72,35 @@ provisioner:
       ubuntu2410:
         ansible_user: ansible
 ```
+
+## Makefile Usage
+
+The `Makefile` provides several targets to help with building, testing, and running the Docker image:
+
+- **Build the Docker image**:
+  ```bash
+  make build
+  ```
+
+- **Run the Docker container**:
+  ```bash
+  make run
+  ```
+
+- **Run a health check on the Docker container**:
+  ```bash
+  make test
+  ```
+
+- **Push the Docker image to a registry**:
+  ```bash
+  make push
+  ```
+
+- **Clean up Docker images and containers**:
+  ```bash
+  make clean
+  ```
 
 ## Author
 
