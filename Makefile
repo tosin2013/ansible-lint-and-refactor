@@ -27,6 +27,9 @@ navigator:
 molecule-test:
 	docker run --rm -v $(PWD):/ansible $(IMAGE_NAME) molecule test
 
+aider-test:
+	docker run --rm -v $(PWD):/ansible $(IMAGE_NAME) aider --help
+
 # Push the Docker image to a registry (assuming you have logged in)
 push:
 	docker push $(IMAGE_NAME)
