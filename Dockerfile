@@ -9,10 +9,13 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install software-properties-common to get add-apt-repository
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends software-properties-common
+    apt-get install -y --no-install-recommends software-properties-common \
+    gnupg \
+    ca-certificates
 
 # Add deadsnakes PPA for Python 3.12
-RUN add-apt-repository ppa:deadsnakes/ppa && \
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F23C5A6CF475977595C89F51BA6932366A755776 && \
+    add-apt-repository ppa:deadsnakes/ppa && \
     apt-get update
 
 # Install Python 3.12 and other dependencies
