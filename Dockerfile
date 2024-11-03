@@ -82,7 +82,7 @@ RUN mkdir -p /etc/ansible && printf "[local]\nlocalhost ansible_connection=local
 # Create `ansible` user with sudo permissions
 ENV ANSIBLE_USER=ansible
 RUN set -xe \
-    && useradd -u 1000780000 -m ${ANSIBLE_USER} \
+    && useradd -m ${ANSIBLE_USER} \
     && echo "${ANSIBLE_USER} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/${ANSIBLE_USER} \
     && chmod 0440 /etc/sudoers.d/${ANSIBLE_USER} \
     && mkdir -p /ansible \
