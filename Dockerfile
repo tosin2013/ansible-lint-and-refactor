@@ -90,7 +90,7 @@ RUN set -xe \
     && chmod 0440 /etc/sudoers.d/1000780000 \
     && mkdir -p /ansible \
     && chown -R ${ANSIBLE_USER}:${ANSIBLE_USER} /opt/ansible-venv /etc/ansible /ansible \
-    && chown -R 1000780000:1000780000 /ansible
+    && chown -R user1000780000:user1000780000 /ansible
 
 # Set working directory
 WORKDIR /ansible
