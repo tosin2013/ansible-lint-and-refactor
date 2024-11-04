@@ -1,16 +1,16 @@
 #!/bin/bash
 set -x
 
-# Define the model and editor model (Ensure these variables are set in your environment)
-export OLLAMA_API_BASE=http://ollama.ollama.svc.cluster.local:11434
-export MODEL="ollama/granite3-dense:8b"
-export EDITOR_MODEL="ollama/granite3-dense:8b"
+# Define the model and editor model (Ensure these variables are set in your environment) uncomment for testing
+# export OLLAMA_API_BASE=http://ollama.ollama.svc.cluster.local:11434
+# export MODEL="ollama/granite3-dense:8b"
+# export EDITOR_MODEL="ollama/granite3-dense:8b"
 
-# Configure Git
-git clone https://github.com/tosin2013/ocp4-disconnected-helper.git
-cd ocp4-disconnected-helper
-git config --local user.name "user1"
-git config --local user.email "user1@example.com"
+# Testing Configure Git
+# git clone https://github.com/tosin2013/ocp4-disconnected-helper.git
+# cd ocp4-disconnected-helper
+# git config --local user.name "user1"
+# git config --local user.email "user1@example.com"
 
 # Define the files to refactor
 export PLAYBOOKS_DIR="playbooks/"
