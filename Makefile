@@ -9,7 +9,7 @@ build:
 
 # Run the Docker container
 run:
-	docker run -it --rm $(IMAGE_NAME)
+	docker run -it --rm $(IMAGE_NAME) /bin/bash
 
 # Run a health check on the Docker container
 test:

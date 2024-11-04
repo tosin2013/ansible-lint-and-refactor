@@ -109,5 +109,6 @@ HEALTHCHECK CMD ansible --version || exit 1
 USER ${ANSIBLE_USER}
 
 COPY entrypoint.sh /opt/ansible-venv/bin
+COPY ansible-lint-script.sh /opt/ansible-venv/bin
 
 ENTRYPOINT ["entrypoint.sh"]
