@@ -1,7 +1,7 @@
 # Makefile for building, testing, and running the Docker image
 
 # Docker image name
-IMAGE_NAME := ubuntu2410-ansible
+IMAGE_NAME := ubuntu2204-ansible
 
 # Build the Docker image
 build:

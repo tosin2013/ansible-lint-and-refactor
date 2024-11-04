@@ -1,0 +1,10 @@
+name: 'docker-ubuntu2410-ansible'
+description: 'A Github action of image for fixing ansible-lint failures for a github repo."
+author: 'tosin2013 <tosin.akinosho@gmail.com>'
+branding:
+  icon: 'box'
+  color: 'green'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
