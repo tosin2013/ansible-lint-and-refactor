@@ -9,7 +9,7 @@ To use this action, add the following code to your `action.yml` file:
 ```yaml
 name: 'Ansible Lint and Refactor'
 description: 'A Github action for fixing Ansible-lint failures and refactoring Ansible playbooks and tasks.'
-author: 'Your Name <your.email@example.com>'
+author: 'Tosin Akinosho tosin.akinosho@gmail.com'
 branding:
   icon: 'box'
   color: 'green'
