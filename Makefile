@@ -30,6 +30,9 @@ molecule-test:
 aider-test:
 	docker run --rm -v $(PWD):/ansible $(IMAGE_NAME) aider --help
 
+get-versions:
+	docker run --rm -v $(PWD):/ansible $(IMAGE_NAME) versions.sh | tee versions.txt
+
 # Push the Docker image to a registry (assuming you have logged in)
 push:
 	docker push $(IMAGE_NAME)
