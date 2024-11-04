@@ -94,7 +94,8 @@ RUN set -xe \
     && echo "${ANSIBLE_USER} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/${ANSIBLE_USER} \
     && chmod 0440 /etc/sudoers.d/${ANSIBLE_USER} \
     && mkdir -p /ansible \
-    && chown -R ${ANSIBLE_USER}:${ANSIBLE_USER} /opt/ansible-venv /etc/ansible /ansible
+    && chown -R ${ANSIBLE_USER}:${ANSIBLE_USER} /opt/ansible-venv /etc/ansible /ansible \
+    && mkdir /workspace
 
 # Set working directory
 WORKDIR /ansible
