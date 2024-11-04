@@ -16,7 +16,7 @@ branding:
 
 runs:
   using: 'docker'
-  image: 'docker-ubuntu2204-ansible'
+  image: 'ansible-lint-and-refactor'
 
 env:
   OLLAMA_API_BASE: 'http://ollama.ollama.svc.cluster.local:11434'
@@ -38,8 +38,6 @@ jobs:
         /opt/ansible-venv/bin/ansible-lint-script.sh
 ```
 
-Replace `Your Name <your.email@example.com>` with your name and email address.
-
 ## Inputs
 
 None.
@@ -56,27 +54,4 @@ None.
 - `PLAYBOOKS_DIR`: The directory containing your playbooks.
 - `TASKS_DIR`: The directory containing your tasks.
 
-## Example
 
-Here's an example of how to use this action in a workflow:
-
-```yaml
-name: Ansible Lint and Refactor
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  ansible-lint-and-refactor:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Run Ansible Lint and Refactor
-      uses: ./.github/actions/ansible-lint-and-refactor
-```
-
-This workflow runs the action whenever you push to the `main` branch.

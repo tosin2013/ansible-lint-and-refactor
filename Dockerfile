@@ -7,8 +7,8 @@ LABEL "com.github.actions.description"="A Github action of image for fixing ansi
 LABEL "com.github.actions.icon"="box"
 LABEL "com.github.actions.color"="green"
 
-LABEL "repository"="https://github.com/tosin2013/docker-ubuntu2204-ansible.git"
-LABEL "homepage"="https://github.com/tosin2013/docker-ubuntu2204-ansible"
+LABEL "repository"="https://github.com/tosin2013/ansible-lint-and-refactor.git"
+LABEL "homepage"="https://github.com/tosin2013/ansible-lint-and-refactor"
 LABEL "maintainer"="Tosin Akinosho <tosin.akinosho@gmail.com>"
 
 

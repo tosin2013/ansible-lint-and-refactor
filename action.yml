@@ -1,13 +1,13 @@
 name: 'Ansible Lint and Refactor'
 description: 'A Github action for fixing Ansible-lint failures and refactoring Ansible playbooks and tasks.'
-author: 'Your Name <your.email@example.com>'
+author: 'Tosin Akinosho tosin.akinosho@gmail.com'
 branding:
   icon: 'box'
   color: 'green'
 
 runs:
   using: 'docker'
-  image: 'docker-ubuntu2204-ansible'
+  image: 'ansible-lint-and-refactor'
 
 env:
   OLLAMA_API_BASE: 'http://ollama.ollama.svc.cluster.local:11434'

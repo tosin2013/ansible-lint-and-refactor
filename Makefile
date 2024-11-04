@@ -1,7 +1,7 @@
 # Makefile for building, testing, and running the Docker image
 
 # Docker image name
-IMAGE_NAME := ubuntu2204-ansible
+IMAGE_NAME := ansible-lint-and-refactor
 
 # Build the Docker image
 build:
