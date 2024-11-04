@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+set -euo pipefail
 
 # Define the model and editor model (Ensure these variables are set in your environment) uncomment for testing
 # export OLLAMA_API_BASE=http://ollama.ollama.svc.cluster.local:11434
