@@ -108,7 +108,7 @@ HEALTHCHECK CMD ansible --version || exit 1
 # Switch to the `ansible` user
 USER ${ANSIBLE_USER}
 
-ADD entrypoint.sh /
+ADD ../entrypoint.sh /
 RUN ls -lath /
 RUN ["chmod", "+x", "entrypoint.sh"]
 ENTRYPOINT ["entrypoint.sh"]
