@@ -1,8 +1,16 @@
 # Use Ubuntu 22.04 as the base image
 FROM ubuntu:22.04
-LABEL maintainer="Tosin Akinosho"
 LABEL version="1.0"
 LABEL description="Ansible environment with Python 3.12"
+LABEL "com.github.actions.name"="Ansible ENV Github Action for aider development"
+LABEL "com.github.actions.description"="A Github action of image for fixing ansible-lint failures for a github repo."
+LABEL "com.github.actions.icon"="box"
+LABEL "com.github.actions.color"="green"
+
+LABEL "repository"="https://github.com/tosin2013/docker-ubuntu2204-ansible.git"
+LABEL "homepage"="https://github.com/tosin2013/docker-ubuntu2204-ansible"
+LABEL "maintainer"="Tosin Akinosho <tosin.akinosho@gmail.com>"
+
 
 # Set non-interactive frontend
 ENV DEBIAN_FRONTEND=noninteractive
@@ -100,4 +108,6 @@ HEALTHCHECK CMD ansible --version || exit 1
 # Switch to the `ansible` user
 USER ${ANSIBLE_USER}
 
-CMD ["/bin/bash"]
+COPY entrypoint.sh /
+RUN ["chmod", "+x", "/ansible/entrypoint.sh"]
+ENTRYPOINT ["/ansible/entrypoint.sh"]
