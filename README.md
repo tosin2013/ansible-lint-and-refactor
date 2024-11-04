@@ -4,7 +4,7 @@ This action runs Ansible Lint on your playbooks and tasks, and then uses Aider t
 
 ## Usage
 
-To use this action, add the following code to your `action.yml` file:
+To use this action in another repository, you can add the following code to your `action.yml` file:
 
 ```yaml
 name: 'Ansible Lint and Refactor'
@@ -16,7 +16,7 @@ branding:
 
 runs:
   using: 'docker'
-  image: 'ansible-lint-and-refactor'
+  image: 'docker.pkg.github.com/tosin2013/ansible-lint-and-refactor/ansible-lint-and-refactor:latest'
 
 env:
   OLLAMA_API_BASE: 'http://ollama.ollama.svc.cluster.local:11434'
@@ -38,6 +38,8 @@ jobs:
         /opt/ansible-venv/bin/ansible-lint-script.sh
 ```
 
+**Note**: Replace the `OLLAMA_API_BASE` URL with the URL of your own Ollama API.
+
 ## Inputs
 
 None.
@@ -53,5 +55,3 @@ None.
 - `EDITOR_MODEL`: The Ollama editor model to use for refactoring.
 - `PLAYBOOKS_DIR`: The directory containing your playbooks.
 - `TASKS_DIR`: The directory containing your tasks.
-
-
