@@ -13,8 +13,8 @@ set -x
 # git config --local user.email "user1@example.com"
 
 # Define the files to refactor
-export PLAYBOOKS_DIR="playbooks/"
-export TASKS_DIR="playbooks/tasks/"
+# export PLAYBOOKS_DIR="playbooks/"
+# export TASKS_DIR="playbooks/tasks/"
 
 for FILE in ${PLAYBOOKS_DIR}*.yml ${TASKS_DIR}*.yml; do
     export ARCHITECT_MESSAGE="$(ansible-lint ${FILE})"
