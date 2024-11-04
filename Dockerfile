@@ -108,6 +108,6 @@ HEALTHCHECK CMD ansible --version || exit 1
 # Switch to the `ansible` user
 USER ${ANSIBLE_USER}
 
-COPY entrypoint.sh /
+COPY entrypoint.sh /ansible/
 RUN ["chmod", "+x", "/ansible/entrypoint.sh"]
 ENTRYPOINT ["/ansible/entrypoint.sh"]
