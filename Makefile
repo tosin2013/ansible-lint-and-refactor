@@ -41,4 +41,7 @@ push:
 clean:
 	docker rmi $(IMAGE_NAME)
 
+prune:
+	docker system prune -f
+
 .PHONY: build run test lint navigator molecule-test push clean

@@ -55,3 +55,4 @@ None.
 - `EDITOR_MODEL`: The Ollama editor model to use for refactoring.
 - `PLAYBOOKS_DIR`: The directory containing your playbooks.
 - `TASKS_DIR`: The directory containing your tasks.
+- `SLEEP_TIME`: The time to sleep before running the refactoring script.
