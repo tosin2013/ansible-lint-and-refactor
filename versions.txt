@@ -1,4 +1,12 @@
-Ansible version: ansible [core 2.17.5]
-Aider version: aider 0.61.0
+Ansible version: ansible [core 2.17.6]
+  config file = None
+  configured module search path = ['/home/ansible/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /opt/ansible-venv/lib/python3.12/site-packages/ansible
+  ansible collection location = /home/ansible/.ansible/collections:/usr/share/ansible/collections
+  executable location = /opt/ansible-venv/bin/ansible
+  python version = 3.12.7 (main, Oct  1 2024, 08:52:12) [GCC 11.4.0] (/opt/ansible-venv/bin/python3)
+  jinja version = 3.1.4
+  libyaml = True
+Aider version: aider 0.62.0
 Playwright version: Version 1.48.0
 Ansible Navigator version: ansible-navigator 24.9.0
