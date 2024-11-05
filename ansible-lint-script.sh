@@ -13,10 +13,10 @@ function pause(){
 export SLEEP_TIME=30
 
 # Testing Configure Git
-git clone https://github.com/tosin2013/ocp4-disconnected-helper.git
-cd ocp4-disconnected-helper
-git config --local user.name "user1"
-git config --local user.email "user1@example.com"
+# git clone https://github.com/tosin2013/ocp4-disconnected-helper.git
+cd ${REPO_NAME}
+# git config --local user.name "user1"
+# git config --local user.email "user1@example.com"
 
 # Define the files to refactor
 export PLAYBOOKS_DIR="playbooks/"

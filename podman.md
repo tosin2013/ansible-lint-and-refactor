@@ -25,7 +25,14 @@ docker build -t ansible-lint-and-refactor .
 podman build -t ansible-lint-and-refactor .
 ```
 
-### 2. Run the Container with Volume Mount
+### 2. Set Environment 
+```bash
+mkdir -p ~/workspaces
+cd ~/workspaces
+git clone https://github.com/tosin2013/ocp4-disconnected-helper.git # git@github.com:tosin2013/ocp4-disconnected-helper.git
+```
+
+### 3. Run the Container with Volume Mount
 
 #### Using Docker
 
@@ -38,6 +45,7 @@ docker run -v ~/workspaces:/workspace \
            -e EDITOR_MODEL=ollama/granite3-dense:8b \
            -e PLAYBOOKS_DIR=playbooks/ \
            -e TASKS_DIR=playbooks/tasks/ \
+           -e REPO_NAME=ocp4-disconnected-helper \
            ansible-lint-and-refactor \
            /opt/ansible-venv/bin/ansible-lint-script.sh
 ```
@@ -47,14 +55,16 @@ docker run -v ~/workspaces:/workspace \
 Use the `podman run` command to mount the `~/workspaces` directory from your host operating system into the Podman container.
 
 ```bash
-podman run -v ~/workspaces:/workspace \
-           -e OLLAMA_API_BASE=http://ollama.ollama.svc.cluster.local:11434 \
-           -e MODEL=ollama/granite3-dense:8b \
-           -e EDITOR_MODEL=ollama/granite3-dense:8b \
-           -e PLAYBOOKS_DIR=playbooks/ \
-           -e TASKS_DIR=playbooks/tasks/ \
-           ansible-lint-and-refactor \
-           /opt/ansible-venv/bin/ansible-lint-script.sh
+podman run -it \
+  -v ~/workspaces:/workspace:Z \
+  -e OLLAMA_API_BASE=http://ollama.ollama.svc.cluster.local:11434 \
+  -e MODEL=ollama/granite3-dense:8b \
+  -e EDITOR_MODEL=ollama/granite3-dense:8b \
+  -e PLAYBOOKS_DIR=playbooks/ \
+  -e TASKS_DIR=playbooks/tasks/ \
+  -e REPO_NAME=ocp4-disconnected-helper \
+  ansible-lint-and-refactor \
+  /opt/ansible-venv/bin/ansible-lint-script.sh
 ```
 
 ### 3. Monitor the Output
