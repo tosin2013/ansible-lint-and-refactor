@@ -37,6 +37,9 @@ get-versions:
 push:
 	docker push $(IMAGE_NAME)
 
+stop:
+	docker stop $(docker ps -q)
+
 # Clean up Docker images and containers
 clean:
 	docker rmi $(IMAGE_NAME)

@@ -14,13 +14,13 @@ export SLEEP_TIME=30
 
 # Testing Configure Git
 # git clone https://github.com/tosin2013/ocp4-disconnected-helper.git
-cd ${REPO_NAME}
-# git config --local user.name "user1"
-# git config --local user.email "user1@example.com"
+cd /workspace/${REPO_NAME}
+git config --global --add safe.directory /workspace/${REPO_NAME}
+
 
 # Define the files to refactor
-export PLAYBOOKS_DIR="playbooks/"
-export TASKS_DIR="playbooks/tasks/"
+#export PLAYBOOKS_DIR="playbooks/"
+#export TASKS_DIR="playbooks/tasks/"
 
 for FILE in ${PLAYBOOKS_DIR}*.yml ${TASKS_DIR}*.yml; do
     export ARCHITECT_MESSAGE="$(ansible-lint --offline -p -f pep8 ${FILE})"
@@ -29,6 +29,12 @@ for FILE in ${PLAYBOOKS_DIR}*.yml ${TASKS_DIR}*.yml; do
     while IFS= read -r line
     do
         echo "Processing: $line"
+        # https://webutility.io/chatgpt-prompt-generator-for-coders
+        PROMPT="You are an AI language model assisting a developer with the action \"Debug\" related to \"${FILE}\". \
+        The following ansible-lint error occurred in the context of \"$line\". \
+        Explain the nature of the errors, the steps you took to resolve them, \
+        and any potential improvements or alternative solutions that may be applicable."
+
         aider ${FILE} \
           --architect --model "$MODEL" --editor-model $EDITOR_MODEL \
           --auto-commits --auto-test --yes --suggest-shell-commands \
@@ -40,13 +46,8 @@ for FILE in ${PLAYBOOKS_DIR}*.yml ${TASKS_DIR}*.yml; do
         #git commit -m "Refactored ${FILE} based on: ${line}"
         
         # Push changes
-        if [ -z "$(git status --porcelain)" ]; then
-            echo "No changes to commit"
-            continue
-        else 
-            git push origin main
-        fi
-        
+        git push
+        git config --global credential.helper store
 
         # Optional: Wait for user input before proceeding to the next file
         sleep ${SLEEP_TIME}
