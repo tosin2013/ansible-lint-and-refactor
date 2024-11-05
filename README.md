@@ -4,38 +4,50 @@ This action runs Ansible Lint on your playbooks and tasks, and then uses Aider t
 
 ## Usage
 
-To use this action in another repository, you can add the following code to your `action.yml` file:
+To use this action in another repository, you can add the following code to your `.github/workflows/ansible-lint-and-refactor.yml` file:
 
 ```yaml
-name: 'Ansible Lint and Refactor'
-description: 'A Github action for fixing Ansible-lint failures and refactoring Ansible playbooks and tasks.'
-author: 'Tosin Akinosho tosin.akinosho@gmail.com'
-branding:
-  icon: 'box'
-  color: 'green'
-
-runs:
-  using: 'docker'
-  image: 'docker.pkg.github.com/tosin2013/ansible-lint-and-refactor/ansible-lint-and-refactor:latest'
-
-env:
-  OLLAMA_API_BASE: 'http://ollama.ollama.svc.cluster.local:11434'
-  MODEL: 'ollama/granite3-dense:8b'
-  EDITOR_MODEL: 'ollama/granite3-dense:8b'
-  PLAYBOOKS_DIR: 'playbooks/'
-  TASKS_DIR: 'playbooks/tasks/'
+name: 'Ansible Lint and Refactor - OLLAMA'
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   ansible-lint-and-refactor:
     runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
 
-    - name: Run Ansible Lint and Refactor
-      run: |
-        chmod +x /opt/ansible-venv/bin/ansible-lint-script.sh
-        /opt/ansible-venv/bin/ansible-lint-script.sh
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Adjust Workspace Permissions
+        run: |
+          sudo chown -R 1000:1000 ${{ github.workspace }}
+
+      - name: Run Ansible Lint and Refactor in Container
+        uses: addnab/docker-run-action@v3
+        with:
+          image: quay.io/takinosh/ansible-lint-and-refactor:da3de0378544e860d38371435a8b42af8981fb70
+          options: |
+            -v ${{ github.workspace }}:/workspace
+            -e OLLAMA_API_BASE=${{ secrets.OLLAMA_API_BASE }}
+            -e MODEL=${{ secrets.MODEL }}
+            -e EDITOR_MODEL=${{ secrets.EDITOR_MODEL }}
+            -e PLAYBOOKS_DIR=playbooks/
+            -e TASKS_DIR=playbooks/tasks/
+          run: |
+            set -e
+            whoami
+            ls -lath /workspace
+            ls -ld /workspace/.git
+            cd /workspace
+            echo ${OLLAMA_API_BASE}
+            echo "USING MODEL: ${MODEL}"
+            /opt/ansible-venv/bin/ansible-lint-script.sh || exit 1
 ```
 
 **Note**: Replace the `OLLAMA_API_BASE` URL with the URL of your own Ollama API.
