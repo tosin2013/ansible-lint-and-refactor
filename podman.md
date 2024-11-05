@@ -29,7 +29,7 @@ podman build -t ansible-lint-and-refactor .
 ```bash
 mkdir -p ~/workspaces
 cd ~/workspaces
-git clone https://github.com/tosin2013/ocp4-disconnected-helper.git # git@github.com:tosin2013/ocp4-disconnected-helper.git
+git clone https://gitea.apps.cluster-b2c8s.b2c8s.sandbox2594.opentlc.com/user1/ocp4-disconnected-helper.git # git@github.com:tosin2013/ocp4-disconnected-helper.git
 ```
 
 ### 3. Run the Container with Volume Mount
